@@ -1,0 +1,156 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f2f2f2;
+}
+
+header {
+    background-color: #0636af;
+    padding: 15px;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+nav li {
+    margin-right: 20px;
+}
+
+nav a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    transition: color 0.3s ease;
+}
+
+/* nav a:hover {
+    color: #0dc871;
+} */
+
+nav img {
+    max-width: 100px;
+    height: auto;
+    margin-left: auto;
+    margin-right: 0;
+}
+
+main {
+    text-align: center;
+    margin: 50px auto;
+}
+
+h2 {
+    color: #0636af;
+}
+
+form {
+    background-color: #fff;
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.forgot-links {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.forgot-links a {
+    color: #0636af;
+    text-decoration: none;
+}
+
+.forgot-links a:hover {
+    text-decoration: underline;
+}
+
+input[type="submit"] {
+    background-color: #0636af;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+input[type="submit"]:hover {
+    background-color: #0dc871;
+}
+
+/* footer {
+    background-color: #0636af;
+    color: #fff;
+    text-align: center;
+    padding: 1em;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    left: 0;
+} */
+
+nav ul li {
+    display: flex;
+    justify-content: center;
+    margin-right: 20px;
+    position: relative; /* Pour positionner correctement ::after */
+}
+
+nav ul li::after {
+    content: ''; /* Contenu vide, mais nécessaire pour que ::after fonctionne */
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 2px; /* Hauteur du soulignement */
+    background-color: white; /* Couleur du soulignement par défaut */
+    transition: width 0.5s ease-out; /* Transition sur la largeur du soulignement */
+}
+
+/* Quand la souris ne survole aucune maison */
+nav ul li:not(:hover)::after {
+    width: 100%; /* La lumière de la maison spéciale s'allume */
+}
+
+nav ul li:hover{
+    opacity: 0.5;
+}

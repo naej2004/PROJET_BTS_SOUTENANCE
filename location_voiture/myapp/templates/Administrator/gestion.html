@@ -1,0 +1,112 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gestion des vehicules</title>
+    <link rel="stylesheet" href="{% static 'Administrator/CSS/style.css' %}" type="text/css" />
+    <link rel="stylesheet" href="{% static 'Client/CSS/carrousel.css' %}" type="text/css" />
+  </head>
+  <body>
+    <div class="container">
+      {% include 'Administrator/header.html' %}
+
+      <!-- main -->
+      <div class="main">
+        <div class="topbar">
+          <div class="toggle">
+            <ion-icon name="menu-outline"></ion-icon>
+          </div>
+          <form action="{% url 'myapp:gestion' %}" method="post">
+            {% csrf_token %}
+            <div class="search">
+              <label>
+                <input type="search" placeholder="Search here" name="search_car" />
+                <ion-icon name="search-outline"></ion-icon>
+              </label>
+              <br />
+              <input type="submit" value="Rechercher" name='search' style="margin-top: 5px" />
+            </div>
+        </form>
+        </div>
+        <p class="instruction">
+          Instructions : Cliquez sur le vehicule pour modifier ces informations
+          !
+        </p>
+        <div class="all_car">
+          {% if Voitures %}
+            {% for voiture in Voitures %}
+                <div class="car_list">
+                  <div class="carousel">
+                    <div class="carousel-container">
+                      <div class="carousel-slide">
+                        <a href="{% url 'myapp:modifier' voiture.idVoiture %}" class="louer">
+                          <img src="{{ voiture.image_set.first.Image_voiture.url }}" />
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="info_car_list">
+                    <div>Nom de la voiture : <span class="value">
+                      {{voiture.Modele}}</span></div>
+                    <div>
+                      Prix de la location (par jour) : <span class="value">{{voiture.Prix_location_jour}}FCFA</span>
+                    </div>
+                    <div>Etat de la voiture : <span class="value">{{voiture.Etat_voiture}}</span></div>
+                    <div>
+                      Garantie pour la voiture : <span class="value">{{voiture.Garantir_voiture}}</span>
+                    </div>
+                    <div>
+                      Kilométrage de la voiture : <span class="value">{{voiture.Killometrage}} km/h</span>
+                    </div>
+                    <div>
+                      Equipement de la voiture :
+                      <span class="value">{{voiture.Equipement_voiture}}</span>
+                    </div>
+                    <div>
+                      Documents requis : <span class="value">{{voiture.Document_requis}}</span>
+                    </div>
+                  </div>
+                </div>
+            {% endfor %}
+            {% else %}
+              <br>
+              <h3>Aucun vehicules trouvés !</h3>
+          {% endif%}
+        </div>
+        <div class="ajout">
+          <p>
+            Vous souhaitez ajouter d'autres vehicules à votre liste ?
+            <a href="{% url 'myapp:ajouter' %}"><button>Cliquez-ici</button></a>
+          </p>
+        </div>
+      </div>
+    </div>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
+    <script>
+      let toggle = document.querySelector(".toggle");
+      let navigation = document.querySelector(".navigation");
+      let main = document.querySelector(".main");
+
+      toggle.onclick = function () {
+        navigation.classList.toggle("active");
+        main.classList.toggle("active");
+      };
+
+      let List = document.querySelectorAll(".navigation li");
+      function activeLink() {
+        List.forEach((item) => item.classList.remove("hovered"));
+        this.classList.add("hovered");
+      }
+      List.forEach((item) => item.addEventListener("mouseover", activeLink));
+    </script>
+  </body>
+</html>

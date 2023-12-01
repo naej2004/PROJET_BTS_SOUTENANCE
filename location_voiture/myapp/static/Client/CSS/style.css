@@ -1,0 +1,354 @@
+header {
+    background-color: #0636af;
+    padding: 15px;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 55px;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* text-decoration: none; */
+}
+
+nav li {
+    margin-right: 20px;
+}
+
+nav a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    transition: color 0.3s ease;
+}
+
+nav img {
+    max-width: 100px;
+    height: auto;
+    margin-left: auto;
+    margin-right: 0;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+button,
+input[type="submit"] {
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    padding: 10px 20px;
+    margin: 5px;
+    border-radius: 8px;
+}
+
+/* Style pour les boutons d'action */
+.action-button {
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    padding: 10px 20px;
+    margin: 10px;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: transform 0.3s ease;
+    /* Ajoute une transition pour une animation fluide */
+}
+
+.action-button:hover {
+    background-color: #45a049;
+    transform: scale(1.05);
+    /* Change l'échelle du bouton au survol */
+}
+
+
+button:hover {
+    background-color: #a52727;
+}
+
+section {
+    margin: 20px;
+}
+
+label,
+input,
+button {
+    margin: 5px;
+}
+
+/* Style pour le survol des boutons */
+button:hover,
+input[type="submit"]:hover {
+    background-color: #a52727;
+    /* Change la couleur de fond au survol */
+}
+
+a {
+    text-decoration: underline;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    display: inline;
+    /* Pour que les éléments de la liste soient en ligne */
+    margin-right: 20px;
+    /* Ajoute de l'espace entre les éléments */
+}
+
+/* public/css/styles.css */
+
+/* Style pour la grille d'images */
+.image-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 16px;
+}
+
+/* Style pour chaque image */
+.image-container {
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.image-container img {
+    display: block;
+    width: 400px;
+    height: 200px;
+    object-fit: cover;
+}
+
+
+.center-buttons {
+    text-align: center;
+    margin-top: 20px;
+    /* Ajoute de l'espace au-dessus des boutons, si nécessaire */
+}
+
+header img {
+    max-width: 100px;
+    /* Définit une largeur maximale pour le logo */
+    height: auto;
+}
+
+nav ul li {
+    display: flex;
+    justify-content: center;
+    margin-right: 20px;
+    position: relative;
+    /* Pour positionner correctement ::after */
+}
+
+nav ul li::after {
+    content: '';
+    /* Contenu vide, mais nécessaire pour que ::after fonctionne */
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0%;
+    height: 2px;
+    /* Hauteur du soulignement */
+    background-color: white;
+    /* Couleur du soulignement par défaut */
+    transition: width 0.5s ease-out;
+    /* Transition sur la largeur du soulignement */
+}
+
+/* Quand la souris ne survole aucune maison */
+nav ul li:is(:hover)::after {
+    width: 100%;
+    /* La lumière de la maison spéciale s'allume */
+}
+
+nav ul li:hover {
+    opacity: 0.5;
+}
+
+/* Style pour la barre de recherche */
+.search {
+    padding: 15px;
+}
+
+.search form {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.search label {
+    font-size: 16px;
+}
+
+.search select,
+.search input[type="search"] {
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+}
+
+.search input[type="submit"] {
+    background-color: #0636af;
+    color: white;
+    font-weight: bold;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.user-info {
+    text-align: center;
+    margin: 20px;
+}
+
+/* Style pour chaque élément d'information */
+.info-item {
+    margin-bottom: 15px;
+}
+
+/* Style pour les labels d'information */
+.label {
+    font-weight: bold;
+}
+
+/* Style pour les valeurs d'information */
+.value {
+    color: #0636af;
+}
+
+/* Style pour les boutons d'action */
+.action-button {
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    padding: 10px 20px;
+    margin: 10px;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+.action-button:hover {
+    background-color: #45a049;
+}
+
+.ui {
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    background: #dfdfdf;
+}
+
+
+.info_car {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    /* Divise la page en deux colonnes égales */
+    gap: 10px;
+    /* Ajoute un espace entre les colonnes */
+    margin: 10px;
+    border: solid;
+
+}
+
+.image-column {
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    padding: 15px;
+    border-right: 2px dashed #ddd;
+    overflow: hidden;
+}
+
+.info-column {
+    margin-left: 10px;
+    margin-top: 12px;
+    padding-left: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+span {
+    font-size: 15px;
+    margin-bottom: 10px
+}
+
+.value {
+    font-size: 20px;
+    margin-top: 0;
+    margin-bottom: 12px;
+}
+
+.validate-button {
+    margin-top: 20px;
+    justify-content: center;
+}
+
+.car .louer img:hover {
+    cursor: pointer;
+}
+
+.info-item button a {
+    text-decoration: none;
+    color: black;
+    font-size: 17px;
+    transition: color 2s ease;
+}
+
+.info-item button {
+    background-color: #fff;
+    border: solid black 2px;
+    transition: background-color 2s ease;
+    transition: border-radius 2s ease;
+}
+
+.info-item button:hover {
+    background-color: black;
+    border-radius: 25px;
+}
+
+.info-item button:hover a {
+    color: #fff;
+}
+
+.search form .recherche {
+    border: solid black 1px;
+    border-radius: 10px;
+    /* background-color: black; */
+    /* transition: border-radius 2s ease; */
+    transition: background-color 1s ease;
+}
+
+.search form .recherche:hover {
+    /* border-radius: 20px; */
+    background-color: #9ea2ab;
+    color: white;
+}

@@ -1,0 +1,29 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Location en cours</title>
+    <link rel="stylesheet" href="{% static 'Client/CSS/style.css' %}" />
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <style>
+        .none{
+            color:skyblue;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    {% include "Client/header.html" %}
+    <h2>VEHICULE DEJA EN LOCATION !!</h2>
+    <span>Ne perdez pas votre temps, et louer un autre vehicule immédiatement !</span>&nbsp;<a href="{% url 'myapp:search' %}" class="none">Je veux louer un autre vehicule sur le champ !</a>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
+</body>
+</html>

@@ -1,0 +1,134 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'Client/CSS/style.css' %}">
+    <link rel="stylesheet" href="{% static 'Client/CSS/css/style.css' %}">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'Client/CSS/styles.css' %}">
+    <title>Votre Compte</title>
+</head>
+<body>
+    <style>
+        body {
+        margin: 0;
+        padding: 0;
+        }
+        .item  a, .delete a {
+          text-decoration: none;
+          color: black;
+          font-size: 17px;
+          transition: color 2s ease;
+          /* background-color: black; */
+      }
+      
+      .item, .delete{
+          background-color: #fff;
+          border: solid black 2px;
+          /* align-self: center;
+          justify-content: center;
+          align-items: center;
+          align-content: center; */
+          border-radius : 20px;
+          transition: background-color 2s ease;
+          transition: border-radius 2s ease;
+          padding : 10px;
+      }
+      
+      .delete:hover{
+        background-color: red;
+          border-radius: 25px;
+      }
+      .item:hover {
+          background-color: black;
+          border-radius: 25px;
+      }
+  
+      .item:hover a, .delete:hover a {
+        color: #fff;
+    }
+    </style>
+    {% include 'Client/header.html' %}
+    <main class="user-info">
+        <h3>VOS INFORMATIONS</h3>
+        <img class="ui" src="{{ client.Image.url }}" alt=""><br><br>
+        <div class="info-item">
+            <span class="label">Nom :</span> <span class="value">{{client.Nom}}</span>
+        </div>
+        <div class="info-item">
+            <span class="label">Prénom :</span> <span class="value">{{client.Prenom}}</span>
+        </div>
+        <div class="info-item">
+            <span class="label">Email :</span> <span class="value">{{client.Email}}</span>
+        </div>
+        <div class="info-item">
+            <span class="label">Numéro de téléphone :</span> <span class="value">{{client.Numero_tel}}</span>
+        </div>
+        <div>
+          <button class="item"><a href="{% url 'myapp:log_out-user' %}" class=""><ion-icon name="exit"></ion-icon> Se Deconnecter</a></button>
+          <button class="delete">
+            <a href="{% url 'myapp:delete_user' %}"><ion-icon name="trash-outline"></ion-icon> Supprimer le compte</a>
+          </button>
+        </div>
+        <a href="{% url 'myapp:inscription-admin' %}"><button class="action-button">Devenir Pro</button></a>
+        <input type="submit" id="openPopupLink" value="APPORTER DES MODIFICATION">
+        <div class="popup" id="popup">
+            <div class="popup-content">
+              <span class="close" id="closePopup">&times;</span>
+              <h2>APPLIQUEZ VOS MODIFICATION</h2>
+              <form action="{% url 'myapp:modif_profil_user'%}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <label for="Name"><ion-icon name="person-circle-outline"></ion-icon> Name :</label>
+                &nbsp;&nbsp;<input type="text" name="Name" id="Name" required value="">
+                <label for="First_Name"><ion-icon name="person-circle-outline"></ion-icon> First Name :</label>
+                &nbsp;&nbsp;<input type="text" name="First_Name" id="First_Name" required value="">
+                <label for="Image"><ion-icon name="camera-outline"></ion-icon> Image de profil :</label>
+                &nbsp;&nbsp;<input type="file" name="Image" id="Image" accept="image/*" required value="">
+                <label for="password"> <ion-icon name="lock-closed-outline"></ion-icon> New Password (8 caractères)</label>
+                &nbsp;&nbsp;<input type="password" name="password2" id="password2" required>
+                <br>
+                <input type="submit" value="APPLIQUER">
+              </form>
+            </div>
+          </div>
+          <div class="popup id"></div>
+    </main>
+    <h2 style="font-style: italic;" align="center">HISTORIQUE</h2>
+    <section>
+      <div class="image-grid">
+        {% if resultats %}
+          {% for resultat in resultats %}
+            <div>
+              <div class="image-container">
+                <div class="car">
+                  <a href="{% url 'myapp:louer' resultat.idVoiture %}" class="louer" title="Cliquez pour plus d'informations">
+                    <img src="{{ resultat.image_url }}" alt="{{ resultat.Marque }}" />
+                  </a>
+                  <div class="car-info">
+                    <h2>Voiture: {{resultat.Modele}}</h2>
+                    <p>Fin de la location: {{ resultat.Date_fin }}</p>
+                    <p>Disponibilite: {{ resultat.Disponibilite }}</p>
+                  </div> 
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+        {% else %}
+          <h3>Aucun vehicule loué !</h3>
+        {% endif %}
+      </div>
+    </section>
+    {% include 'Client/footer.html' %}
+    <script src="{% static 'Client/JS/script.js' %}"></script>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
+</body>
+</html>

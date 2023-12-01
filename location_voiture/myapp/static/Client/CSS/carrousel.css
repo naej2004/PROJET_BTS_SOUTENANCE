@@ -1,0 +1,47 @@
+.carousel {
+    position: relative;
+    padding-top: 10px;
+    max-width: 100%;
+    overflow: hidden;
+    /* border-radius: 12px; */
+}
+
+.carousel-container {
+    display: flex;
+    width: 100%; /* Ajustez la largeur à 100% */
+    transition: transform 0.5s ease-in-out;
+    /* border-radius: 12px; */
+}
+
+.carousel-slide {
+    flex: 0 0 100%; /* Ajustez la largeur des diapositives à 100% */
+    box-sizing: border-box;
+}
+
+.carousel-slide img {
+    width: 100%;
+    height: 95%;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: solid var(--blue);
+}
+
+.prev-button, .next-button {
+    position: absolute;
+    top: 80%;
+    transform: translateY(-50%);
+    background: #333;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.prev-button {
+    left: 8px;
+}
+
+.next-button {
+    right: 8px;
+}

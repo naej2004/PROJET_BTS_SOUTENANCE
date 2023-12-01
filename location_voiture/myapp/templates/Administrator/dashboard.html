@@ -1,0 +1,119 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tableau de bord</title>
+    <link rel="stylesheet" href="{% static 'administrator/CSS/style.css' %}" type="text/css" />
+  </head>
+  <body>
+    <div class="container">
+      {% include 'Administrator/header.html' %}
+
+      <!-- main -->
+      <div class="main">
+        <div class="topbar">
+          <div class="toggle">
+            <ion-icon name="menu-outline"></ion-icon>
+          </div>
+        </div>
+
+        <div class="cardBox">
+          <div class="card">
+            <div>
+              <div class="numbers">{{moyenne_admin|floatformat:1}}</div>
+              <div class="cardName">Notation</div>
+            </div>
+            <div class="iconBx">
+              <ion-icon name="star-outline"></ion-icon>
+            </div>
+          </div>
+          <div class="card">
+            <div>
+              <div class="numbers">{{nbre_cars}}</div>
+              <div class="cardName">Voitures ajoutés</div>
+            </div>
+            <div class="iconBx">
+              <ion-icon name="cart-outline"></ion-icon></ion-icon>
+            </div>
+          </div>
+          <div class="card">
+            <div>
+              <div class="numbers">{{somme_totale}}FCFA</div>
+              <div class="cardName">Somme gagnée</div>
+            </div>
+            <div class="iconBx">
+              <ion-icon name="cash-outline"></ion-icon></ion-icon>
+            </div>
+          </div>
+        </div>
+
+        <div class="details">
+          <div class="recentOrders">
+            <div class="cardHeader">
+              <h2>Les Dernières locations (10)</h2>
+            </div>
+            <table>
+              <thead>
+                <tr>
+                  <td>Voiture</td>
+                  <td>Periode</td>
+                  <td>Prix de la location</td>
+                  <td>Note (/5)</td>
+                </tr>
+              </thead>
+              <tbody>
+              {% for last in last_location %}
+                <tr>
+                  <td>{{last.Voiture_idVoiture.Modele}}</td>
+                  <td>{{last.nombre_jour}}j</td>
+                  <td>{{last.Cout_total}}FCFA</td>
+                  <td>{{last.Note}}</td>
+                </tr>
+              {% endfor %}
+              </tbody>
+            </table>
+          </div>
+          {% comment %} <div class="recentCustomers">
+            <div class="carHeader">
+              <h2>Les Derniers Clients</h2>
+            </div>
+            <table>
+              {% for
+              <tr>
+                <td width="60px"><div class="imBx"><img src=""></div></td>
+                <td><h4>David <br><span>Italy</span></h4></td>
+              </tr>
+            </table>
+          </div> {% endcomment %}
+        </div>
+      </div>
+    </div>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
+    <script>
+      let toggle = document.querySelector(".toggle");
+      let navigation = document.querySelector(".navigation");
+      let main = document.querySelector(".main");
+
+      toggle.onclick = function () {
+        navigation.classList.toggle("active");
+        main.classList.toggle("active");
+      };
+
+      let List = document.querySelectorAll(".navigation li");
+      function activeLink() {
+        List.forEach((item) => item.classList.remove("hovered"));
+        this.classList.add("hovered");
+      }
+      List.forEach((item) => item.addEventListener("mouseover", activeLink));
+    </script>
+  </body>
+</html>

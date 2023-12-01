@@ -1,0 +1,68 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'Administrator/CSS/styles.css' %}">
+    <title>Inscrivez-vous</title>
+    <style>
+        .back
+        {
+            border-top-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+            background-color: #fff;
+            font-size: 20px;
+            font-style: italic;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li> <button onclick="retourEnArriere()" class="back">Revenir en arrière</button></li>
+                <a href=""><li style="color: #fff; text-transform: uppercase;"></li></a>
+                <!-- <li><a href="exit.html">Deconnexion</a></li> -->
+            </ul>
+            <img src="{% static 'Global/Images/logo.png' %}" alt="logo">
+        </nav>
+    </header>
+
+    <main>
+        <h1>Inscrivez-vous | Propriétaire de voitures</h1>
+        <form action="{% url 'myapp:inscription-admin' %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {% if message%}
+                <h3 style="color:red;">{{message}}</h3>
+            {% endif %}
+            <label for="nom">Nom :</label>
+            <input type="text" id="nom" name="nom" required>
+
+            <label for="prenom">Prénom :</label>
+            <input type="text" id="prenom" name="prenom" required>
+            
+            <label for="telephone">Numéro de téléphone :</label>
+            <input type="tel" id="telephone" name="telephone" required>
+
+            <label for="email">Email :</label>
+            <input type="email" id="email" name="email" required>
+            {% if password_error%}
+                <h4 style="color:red;">{{password_error}}</h4>
+            {% endif %}
+            <label for="password">Mot de passe :</label>
+            <input type="password" id="password" name="password" required>
+            <label for="password2">Confirmer votre mot de passe :</label>
+            <input type="password" id="password2" name="password2" required>
+
+            <label for="image">Image :</label>
+            <input type="file" id="image" name="image" accept="image/*" required>
+
+            <input type="submit" value="S'inscrire">
+            <a href="{% url 'myapp:connexion-admin' %}" class="inscription">Vous avez deja un compte ? Cliquez-ici</a>
+        </form>
+    </main>
+    <script src="{% static 'Administrator/JS/back.js' %}"></script>
+</body>
+</html>

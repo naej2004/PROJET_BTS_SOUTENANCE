@@ -1,0 +1,48 @@
+{% load static %}
+<div class="navigation">
+        <ul>
+          <li class="container-logo">
+            <a href="{% url 'myapp:dashboard' %}">
+              <img class="logo" src="{% static 'Global/Images/logo.png' %}" alt="Logo" />
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'myapp:dashboard' %}">
+              <span class="icon"><ion-icon name="analytics"></ion-icon></span>
+              <span class="title">Tableau de bord</span>
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'myapp:profil-admin' %}">
+              <span class="icon"
+                ><ion-icon name="person-circle-outline"></ion-icon
+              ></span>
+              <span class="title">Profil</span>
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'myapp:gestion' %}">
+              <span class="icon"
+                ><ion-icon name="car-sport-outline"></ion-icon
+              ></span>
+              <span class="title">Gestion des voitures</span>
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'myapp:contact' %}">
+              <span class="icon"
+                ><ion-icon name="call-outline"></ion-icon
+              ></span>
+              <span class="title">Contactez-nous</span>
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'myapp:log_out-admin' %}">
+              <span class="icon"
+                ><ion-icon name="log-out-outline"></ion-icon
+              ></span>
+              <span class="title">Deconnexion</span>
+            </a>
+          </li>
+        </ul>
+      </div>

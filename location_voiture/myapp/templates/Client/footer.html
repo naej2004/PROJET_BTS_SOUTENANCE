@@ -1,0 +1,37 @@
+<footer class="footer">
+      <div class="container_">
+        <div class="row">
+          <div class="footer-col">
+            <h4>Contactez-nous</h4>
+            <ul >
+              <li style="display: flex; align-items: center;"><a href="https://wa.me/message/4HWOWCKOILCGL1" target="_blank"><ion-icon name="logo-whatsapp" style="font-size: 20px;"></ion-icon> WhatsApp</a></li>
+              <li style="display: flex; align-items: center;"><a href="mailto:daomadou@itsynergyci.com" style="text-transform: lowercase;"><ion-icon style="font-size: 20px;" name="mail-outline"></ion-icon> : daomadou@itsynergyci.com</a></li>
+              <li style="display: flex; align-items: center;"><a href="#"><ion-icon name="call-outline" style="font-size: 20px;"></ion-icon> : +225 07 87 08 90 13</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Liens rapides</h4>
+            <ul>
+              <li><a href="{% url 'myapp:home' %}">Accueil</a></li>
+              <li><a href="{% url 'myapp:inscription-admin' %}">Devenir Pro</a></li>
+              <li><a href="{% url 'myapp:search' %}">Louer une voiture</a></li>
+              <li><a href="{% url 'myapp:profil-user' %}">Mon Compte</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Autres Services</h4>
+            <ul>
+              <li><a href="https://residenceit.com/" target="_blank">Residence IT</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>follow us</h4>
+            <div class="social-links">
+              <a href="https://www.facebook.com/itsynergysarl" target="_blank"><i class="fab fa-facebook-f"></i></a>
+              {% comment %} <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+              <a href="#" target="_blank"><i class="fab fa-linkedin-in"></i></a> {% endcomment %}
+            </div>
+          </div>
+        </div>
+      </div>
+   </footer>

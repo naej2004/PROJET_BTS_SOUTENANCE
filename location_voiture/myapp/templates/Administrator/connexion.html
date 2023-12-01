@@ -1,0 +1,52 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'Administrator/CSS/admin-style.css' %}">
+    <title>Connectez-vous</title>
+    <style>
+        .back
+        {
+            border-top-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+            background-color: #fff;
+            font-size: 20px;
+            font-style: italic;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li> <button onclick="retourEnArriere()" class="back">Revenir en arrière</button></li>
+            </ul>
+            <img src="{% static 'Global/Images/logo.png' %}" alt="logo">
+        </nav>
+    </header>
+    <main>
+        <h2>Connectez-vous | Propriétaire de voitures</h2>
+        <form action="{% url 'myapp:connexion-admin' %}" method="post">
+            {% csrf_token %}
+            {% if message%}
+                <h3 style="color:red;">{{message}}</h3>
+            {% endif %}
+            <label for="phone">Numéro de téléphone :</label>
+            <input type="tel" id="phone" name="phone" required>
+
+            <label for="password">Mot de passe :</label>
+            <input type="password" id="password" name="password" required>
+
+            <input type="submit" value="Se connecter">
+        </form>
+        <div class="forgot-links">
+            <a href="{% url 'myapp:forget_password_admin_step1' %}">Mot de passe oublié ?</a>
+            <a href="{% url 'myapp:inscription-admin' %}">Pas de compte ? Inscrivezvous ?</a>
+        </div>
+    </main>
+    <script src="{% static 'Administrator/JS/back.js' %}"></script>
+</body>
+</html>

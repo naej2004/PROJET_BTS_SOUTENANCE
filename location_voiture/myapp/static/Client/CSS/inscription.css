@@ -1,0 +1,144 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4; /* Couleur de fond de la page */
+}
+
+header {
+    background-color: #0636af;
+    padding: 15px;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+nav li {
+    margin-right: 20px;
+}
+
+nav a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    transition: color 0.3s ease;
+}
+
+/* nav a:hover {
+    color: #0dc871; /* Changement de couleur au survol *
+} */
+
+nav img {
+    max-width: 100px;
+    height: auto;
+    margin-left: auto;
+    margin-right: 0;
+}
+
+main {
+    max-width: 600px; /* Largeur maximale du contenu */
+    margin: 20px auto; /* Centre le contenu sur la page */
+    background-color: #fff; /* Couleur de fond du formulaire */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Ombre légère */
+}
+
+h2 {
+    text-align: center;
+    color: #0636af; /* Couleur du titre */
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+input {
+    padding: 10px;
+    margin-bottom: 16px;
+    border: 1px solid #ddd; /* Bordure grise */
+    border-radius: 4px;
+    transition: border-color 0.3s ease;
+}
+
+input:focus {
+    border-color: #0636af; /* Changement de couleur de la bordure au focus */
+}
+
+input[type="submit"] {
+    background-color: #0636af;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+input[type="submit"]:hover {
+    background-color: #0dc871; /* Changement de couleur au survol */
+}
+
+/* footer {
+    background-color: #0636af;
+    color: #fff;
+    text-align: center;
+    padding: 1em;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    left: 0;
+} */
+
+nav ul li {
+    display: flex;
+    justify-content: center;
+    margin-right: 20px;
+    position: relative; /* Pour positionner correctement ::after */
+}
+
+nav ul li::after {
+    content: ''; /* Contenu vide, mais nécessaire pour que ::after fonctionne */
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 2px; /* Hauteur du soulignement */
+    background-color: white; /* Couleur du soulignement par défaut */
+    transition: width 0.5s ease-out; /* Transition sur la largeur du soulignement */
+}
+
+/* Quand la souris ne survole aucune maison */
+nav ul li:not(:hover)::after {
+    width: 100%; /* La lumière de la maison spéciale s'allume */
+}
+
+nav ul li:hover{
+    opacity: 0.5;
+}
+
+.inscription{
+    color: #0636af;
+    text-decoration: none;
+}

@@ -1,0 +1,75 @@
+.avis-container {
+    display: flex;
+    margin-bottom: 20px;
+    border: solid 2px black;
+    border-radius: 5px;
+    padding: 10px;
+  }
+  
+  .utilisateur {
+    margin-right: 20px;
+  }
+  
+  .utilisateur img {
+    max-width: 100px;
+    border-radius: 50%;
+  }
+  
+  .commentaire {
+    flex-grow: 1;
+    border: solid 1px rgb(177, 175, 175);
+    padding: 15px;
+    border-top-left-radius: 15px;
+    overflow: auto;
+  }
+  
+  .form {
+    margin-top: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+  
+  textarea {
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+    resize: none;
+    border-bottom-left-radius: 15px;
+    border-top-right-radius: 15px;
+    font-family: "Times New Romanes";
+    font-size: 14px;
+    padding: 8px;
+  }
+  
+  .comment {
+    overflow-y: auto;
+    height: 300px;
+  }
+  
+  .notation {
+    margin-top: 10px;
+  }
+  
+  .notation input[type="radio"] {
+    display: none;
+  }
+  
+  .notation label {
+    font-size: 25px;
+    color: #ddd;
+    cursor: pointer;
+    transition: color 0.3s;
+  }
+  
+  .notation input[type="radio"]:checked + label,
+  .notation label:hover,
+  .notation label:hover ~ label {
+    color: gold;
+  }
+  .aucun-commentaire {
+    font-size: 18px;
+    font-weight: bold;
+    color: gray;
+    text-align: center;
+    margin-top: 20px;
+}

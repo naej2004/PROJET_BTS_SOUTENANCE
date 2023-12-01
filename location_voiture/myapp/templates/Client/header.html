@@ -1,0 +1,15 @@
+{% load static %}
+<header>
+      <nav>
+        <ul>
+          <li class="checked"><a href="{% url 'myapp:home' %}" class=""><ion-icon name="home-sharp"></ion-icon> Home</a></li>
+          <!-- <li class=""><a href="search.html" class="">Recherche</a></li> -->
+          <li class="">
+            <a href="{% url 'myapp:inscription-admin' %}" class=""><ion-icon name="person-add"></ion-icon> Devenir Pro</a>
+          </li>
+          <li class=""><a href="{% url 'myapp:profil-user' %}" class=""><ion-icon name="person-circle"></ion-icon> Mon Compte</a></li>
+          <!-- <li class=""><a href="exit.html" class=""><ion-icon name="exit"></ion-icon> Bye 😭</a></li> -->
+        </ul>
+        <img src="{% static 'Global/Images/logo.png' %}" alt="logo" />
+      </nav>
+</header>

@@ -1,0 +1,70 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tableau de bord</title>
+    <link rel="stylesheet" href="{% static 'Administrator/CSS/style.css'%}" type="text/css" />
+  </head>
+  <body>
+    <div class="container">
+      {% include 'Administrator/header.html' %}
+      <!-- main -->
+      <div class="main">
+        <div class="topbar">
+          <div class="toggle">
+            <ion-icon name="menu-outline"></ion-icon>
+          </div>
+        </div>
+
+        <div class="contact">
+          <p>
+            <span style="text-transform: uppercase; font-size: 25px; font-weight: 500;">Contactez-nous aux numéros suivant, par email ou sur WhatsApp :</span>
+            <br /><br />
+            <span style="cursor: pointer; text-decoration: none" class="value"
+              >&nbsp;<ion-icon name="call-outline"></ion-icon>&nbsp;&nbsp;: 
+              <b><a href="tel:+2250556992830">(+225) 05 56 99 28 30</a>/<a href="tel:+2250787089013">(+225) 07 87 08 90 13</a>/<a href="tel:+2252721729135">(+225) 27 21 72 91 35</a></b>
+              <br /><br /><ion-icon name="mail-outline"></ion-icon
+              >&nbsp;&nbsp;: <a style="color: var(--blue);" href="mailto:daomadou@itsynergyci.com"
+              target="_blank"><b>daomadou@itsynergyci.com</b></a
+              ></span
+            ><br /><br />
+            <b style="color:var(--blue)";
+              ><ion-icon
+                style="font-size: 1.5em; color: var(--blue);"
+                name="logo-whatsapp"
+              ></ion-icon>&nbsp;&nbsp;:
+              <span style="cursor: pointer" class="value"><a href="https://wa.me/message/4HWOWCKOILCGL1" target="_blank">IT SYNERGY - WhatsApp</a></span
+            ></b>
+          </p>
+        </div>
+      </div>
+    </div>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
+    <script>
+      let toggle = document.querySelector(".toggle");
+      let navigation = document.querySelector(".navigation");
+      let main = document.querySelector(".main");
+
+      toggle.onclick = function () {
+        navigation.classList.toggle("active");
+        main.classList.toggle("active");
+      };
+
+      let List = document.querySelectorAll(".navigation li");
+      function activeLink() {
+        List.forEach((item) => item.classList.remove("hovered"));
+        this.classList.add("hovered");
+      }
+      List.forEach((item) => item.addEventListener("mouseover", activeLink));
+    </script>
+  </body>
+</html>

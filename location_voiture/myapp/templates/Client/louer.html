@@ -1,0 +1,116 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'Client/CSS/carrousel.css' %}" />
+    <link rel="stylesheet" href="{% static 'Client/CSS/style.css' %}" />
+    <link rel="stylesheet" href="{% static 'Client/CSS/styles.css' %}" />
+    <link rel="stylesheet" href="{% static 'Client/CSS/css/style.css' %}" />
+    <link rel="stylesheet" href="{% static 'Client/CSS/commentaire.css' %}" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+    />
+    <title>Louer votre</title>
+  </head>
+  <body>
+    {% include 'Client/header.html' %}
+    <main class="info_car">
+      <div class="image-column">
+        <div class="carousel">
+          <div class="carousel-container">
+            {% for image in Voiture.image_set.all %}
+              <div class="carousel-slide">
+                <img src="{{ image.Image_voiture.url }}" />
+              </div>
+            {% endfor %}
+          </div>
+          <button class="prev-button">Précédent</button>
+          <button class="next-button">Suivant</button>
+        </div>
+      </div>
+
+      <div class="info-column">
+        <span>Nom de la voiture : </span><span class="value">{{Voiture.Modele}}</span>
+        <span>Prix de la location (par jour) : </span><span class="value">{{Voiture.Prix_location_jour}} FCFA</span>
+        <span>Etat de la voiture : </span><span class="value">{{Voiture.Etat_voiture}}</span>
+        <span>Garantie pour la voiture : </span><span class="value">{{Voiture.Garantir_voiture}}</span>
+        <span>Kilométrage de la voiture : </span><span class="value">{{Voiture.Killometrage}}</span>
+        <span>Equipement de la voiture : </span><span class="value">{{Voiture.Equipement_voiture}}</span>
+        <span>Vitesse de la voiture : </span><span class="value">{{Voiture.vitesse}} km/h</span>
+        <span>Documents requis : </span><span class="value">{{Voiture.Document_requis}}</span>
+        <form action="{% url 'myapp:louer' Voiture.idVoiture %}" method="post">
+          {% csrf_token %}
+          <label for="nbre_jour">Nombre de jours : </label> &nbsp;<input type="number" name="nbre_jour" id="nbre_jour" required> <br>
+          <label for="note_car">Notez la voiture (/5) : </label> &nbsp;<input type="number" name="note_car" id="note_car" required>
+          <input type="checkbox" name="1" id="" required />&nbsp;&nbsp;<span
+            class="forced"
+            >J'ai lu et J'accepte les
+            <a href="#" id="openPopupLink"
+              >conditions d'utilisataion generales</a
+            >
+            (IMPORTANT) !!</span
+          >
+          <input type="submit" class="validate-button" value="VALIDER" />
+          <div class="popup" id="popup">
+            <div class="popup-content">
+              <span class="close" id="closePopup">&times;</span>
+              <h2>Conditon d'utilisataion generales</h2>
+              <p>
+                {% lorem 3 %}
+              </p>
+            </div>
+          </div>
+        </form>
+      </div>
+    </main>
+    <div class="button-validate"></div>
+    {% comment %} <section id="comment-section" class="comment">
+      <h2>AVIS ET COMMENTAIRES</h2>
+    </section>
+    {% csrf_token %}
+    <form action="" id="comment-form" method = "post" class="form">
+      <label for="comment">Ajouter un commentaire :</label>
+      <textarea
+        id="comment"
+        name="comment"
+        rows="4"
+        placeholder="Écrivez votre commentaire ici..."
+        required
+      ></textarea>
+      <fieldset class="notation">
+        <legend>Notez la location (au moins 1 &#9733) :</legend>
+        <input type="radio" id="etoile5" name="note" value="5"/>
+        <label for="etoile5">&#9733;</label>
+    
+        <input type="radio" id="etoile4" name="note" value="4" />
+        <label for="etoile4">&#9733;</label>
+    
+        <input type="radio" id="etoile3" name="note" value="3" />
+        <label for="etoile3">&#9733;</label>
+    
+        <input type="radio" id="etoile2" name="note" value="2" />
+        <label for="etoile2">&#9733;</label>
+    
+        <input type="radio" id="etoile1" name="note" value="1"/>
+        <label for="etoile1">&#9733;</label>
+      </fieldset>
+      <button type="submit" name="submit">Publier</button>
+    </form> {% endcomment %}
+    {% include 'Client/footer.html' %}
+    <script src="{% static 'Client/JS/script.js' %}"></script>
+    <script src="{% static 'Client/JS/carrousel.js' %}"></script>
+    {% comment %} <script src="{% static 'Client/JS/comment.js' %}"></script> {% endcomment %}
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
+  </body>
+</html>

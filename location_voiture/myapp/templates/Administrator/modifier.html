@@ -1,0 +1,124 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'Administrator/CSS/ajout.css' %}" />
+    <link rel="stylesheet" href="{% static 'Client/CSS/carrousel.css' %}" />
+    <title>Modifier une Voiture</title>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <ul>
+          <li style="color: #fff">MODIFIER LES INFORMATION D'UNE VOITURE</li>
+        </ul>
+        <img src="{% static 'Global/Images/logo.png' %}" alt="logo" />
+      </nav>
+    </header>
+    <main>
+      <!-- <h2>Modifier les information d'une Voiture</h2> -->
+      <form action="{% url 'myapp:modifier' Voitures.idVoiture %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <section class="container">
+          <div class="images">
+            <div class="image-column">
+              <div class="carousel">
+                <div class="carousel-container">
+                    {% for image in Voitures.image_set.all %}
+                      <div class="carousel-slide">
+                        <img src="{{ image.Image_voiture.url }}" />
+                      </div>
+                    {% endfor %}
+                </div>
+                <button class="prev-button">Précédent</button>
+                <button class="next-button">Suivant</button>
+              </div>
+            </div>
+            <input
+              type="file"
+              id="images"
+              name="images"
+              accept="image/*"
+              required
+              multiple
+            />
+            <span class="button" id="images" onclick="openFileExplorer()"
+              >Changer l'image</span
+            >
+          </div>
+          <div class="info">
+            <label for="Marque">Marque de la Voiture :</label>
+            <input type="text" id="Marque" name="Marque" required  value="{{Voitures.Marque}}"/>
+
+            <label for="Modele">Modèle de la Voiture :</label>
+            <input type="text" id="Modele" name="Modele" required value="{{Voitures.Modele}}"/>
+
+            <label for="Garantie">Garantie de la Voiture :</label>
+            <input type="text" id="Garantie" name="Garantie" required value="{{Voitures.Garantir_voiture}}"/>
+
+            <label for="Vitesse">Vitesse de la Voiture :</label>
+            <input type="number" id="Vitesse" name="Vitesse" required/>
+
+            <label for="Killometrage">Killometrage autorisé :</label>
+            <input type="text" id="Killometrage" name="Killometrage" required value="{{Voitures.Killometrage}}"/>
+
+            <label for="etat">État de la Voiture :</label>
+            <select id="etat" name="etat" required>
+              <option value="Neuve">Neuve</option>
+              <option value="Occasion">Occasion</option>
+            </select>
+
+            <label for="Equipement">Equipement present de la Location :</label>
+            <input type="text" id="Equipement" name="Equipement" required value="{{Voitures.Equipement_voiture}}"/>
+
+            <label for="Doc">Document requis pour conduire la Location :</label>
+            <input type="text" id="Doc" name="Doc" required value="{{Voitures.Document_requis}}"/>
+
+            <label for="prix">Prix de la Location (par jour) :</label>
+            <div class="prix-input">
+              <span>CFA</span>
+              <input type="number" id="prix" name="prix" required />
+            </div>
+            <input type="submit" value="VALIDER" name="submit" />
+            {% comment %} <input type="reset" value="ANNULER" /> {% endcomment %}
+          </div>
+        </section>
+      </form>
+      <form action="{% url 'myapp:delete' Voitures.idVoiture %}" method="post" >
+        {% csrf_token %}
+        <button type="submit" name="delete"><ion-icon name="trash-bin-outline"></ion-icon></button>
+      </form>
+        <p class="modifier" style="font-size: 17px">
+          Souhaitez ajouter une voiture ?
+          <a
+            href="{% url 'myapp:ajouter' %}"
+            style="
+              background: #287bff;
+              color: #fff;
+              border-radius: 6px;
+              text-decoration: none;
+            "
+            >Cliquez-ici</a
+          >
+        </p>
+    </main>
+    <script src="{% static 'Administrator/JS/script2.js' %}"></script>
+    <script src="{% static 'Client/JS/carrousel.js' %}"></script>
+    <script>
+      function openFileExplorer() {
+        document.getElementById('images').click();
+      }
+      
+    </script> 
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
+  </body>
+</html>

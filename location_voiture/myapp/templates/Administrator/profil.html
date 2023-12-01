@@ -1,0 +1,184 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tableau de bord</title>
+    <link rel="stylesheet" href="{% static 'Administrator/CSS/style.css' %}" type="text/css" />
+    <link rel="stylesheet" href="{% static 'Client/CSS/styles.css' %}">
+    
+    <style>
+      .info_admin {
+        display: flex;
+        margin-left: 15px;
+        margin-right: 15px;
+        margin-top: 40px;
+        /* align-items: center; */
+        border: solid var(--blue);
+        border-radius: 20px;
+        padding: 20px;
+        margin-top: 10%;
+        transition: border-color 1s ease;
+      }
+
+      .info_admin:hover{
+        border-color: rgb(186, 135, 106);
+      }
+      .left {
+        flex: 8;
+        display: grid;
+        /* border-right: solid black; */
+        font-size: 20px;
+      }
+
+      .right {
+        flex: 2;
+        padding-top: 0;
+        padding-right: 0;
+      }
+
+      .values{
+        color: var(--blue);
+        font-size: 20px;
+        transition: color 1s ease;
+      }
+
+      .info_admin:hover .values{
+        color: rgb(186, 135, 106);
+      }
+
+      .ui{
+        height: 150px;
+        width: 150px;
+        border-radius: 50%;
+        object-fit: cover;
+        background: #dfdfdf;
+      }
+
+      .item  a, .delete a {
+        text-decoration: none;
+        color: black;
+        font-size: 17px;
+        transition: color 2s ease;
+        /* background-color: black; */
+    }
+    
+    .item, .delete{
+        background-color: #fff;
+        border: solid black 2px;
+        /* align-self: center;
+        justify-content: center;
+        align-items: center;
+        align-content: center; */
+        border-radius : 20px;
+        transition: background-color 2s ease;
+        transition: border-radius 2s ease;
+        padding : 10px;
+    }
+    
+    .delete:hover{
+      background-color: red;
+        border-radius: 25px;
+    }
+    .item:hover {
+        background-color: black;
+        border-radius: 25px;
+    }
+
+    .item:hover a, .delete:hover a {
+      color: #fff;
+  }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      {% include 'Administrator/header.html' %}
+
+      <!-- main -->
+      <div class="main">
+        <div class="topbar">
+          <div class="toggle">
+            <ion-icon name="menu-outline"></ion-icon>
+          </div>
+        </div>
+        <div class="info_admin">
+          <div class="left">
+            <div>Nom : <span class="values">{{Administrator.Nom}}</span></div>
+            <div>Prenom : <span class="values">{{Administrator.Prenom}}</span></div>
+            <div>Email : <span class="values">{{Administrator.Email}}</span></div>
+            <div>Numero de telphone : <span class="values">{{Administrator.Numero_tel}}</span></div>
+            <div>
+              Nombre total de voitures ajoutées :
+              <span class="values">{{nbre_car}}</span>
+            </div>
+            <div>
+              Date d'inscription : <span class="values">{{Administrator.Date_inscription}}</span>
+            </div>
+            <div>
+              Somme total obtenue : <span class="values">{{somme}}FCFA</span>
+            </div>
+          </div>
+          <div class="right">
+            <img class="ui" src="{{Administrator.Image.url}}" />
+          </div>
+        </div>
+        <div class="action">
+          <input type="submit" id="openPopupLink" value="APPORTER DES MODIFICATION">
+          <button class="item">
+            <a href="{% url 'myapp:log_out-admin' %}"><ion-icon name="exit"></ion-icon> Se Deconnecter</a>
+          </button>
+          <button class="delete">
+            <a href="{% url 'myapp:delete_admin' %}"><ion-icon name="trash-outline"></ion-icon> Supprimer le compte</a>
+          </button>
+        </div>
+        <div class="popup" id="popup">
+          <div class="popup-content">
+            <span class="close" id="closePopup">&times;</span>
+            <h2>APPLIQUEZ VOS MODIFICATION</h2>
+            <form action="{% url 'myapp:modif_profil_admin' %}" method="post" enctype="multipart/form-data">
+              {% csrf_token %}
+              <label for="Name"><ion-icon name="person-circle-outline"></ion-icon> Name :</label>
+                &nbsp;&nbsp;<input type="text" name="Name" id="Name" required value="">
+                <label for="First_Name"><ion-icon name="person-circle-outline"></ion-icon> First Name :</label>
+                &nbsp;&nbsp;<input type="text" name="First_Name" id="First_Name" required value="">
+                <label for="Image"><ion-icon name="camera-outline"></ion-icon> Image de profil :</label>
+                &nbsp;&nbsp;<input type="file" name="Image" id="Image" accept="image/*" required value="">
+                <label for="password"> <ion-icon name="lock-closed-outline"></ion-icon> New Password (8 caractères)</label>
+                &nbsp;&nbsp;<input type="password" name="password2" id="password2" required>
+              <br>
+              <input type="submit" value="APPLIQUER">
+            </form>
+          </div>
+        </div>
+        <br>
+      </div>
+    </div>
+    <script src="{% static 'Client/JS/script.js' %}"></script>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
+    <script>
+      let toggle = document.querySelector(".toggle");
+      let navigation = document.querySelector(".navigation");
+      let main = document.querySelector(".main");
+
+      toggle.onclick = function () {
+        navigation.classList.toggle("active");
+        main.classList.toggle("active");
+      };
+
+      let List = document.querySelectorAll(".navigation li");
+      function activeLink() {
+        List.forEach((item) => item.classList.remove("hovered"));
+        this.classList.add("hovered");
+      }
+      List.forEach((item) => item.addEventListener("mouseover", activeLink));
+    </script>
+  </body>
+</html>
